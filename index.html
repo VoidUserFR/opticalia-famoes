@@ -202,6 +202,59 @@ body { padding-top: 60px; }
   margin-bottom: 3rem;
 }
 
+/* PROMOÇÕES */
+.section-promos {
+  background: var(--white);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.promos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+@media (max-width: 900px) {
+  .promos-grid { grid-template-columns: 1fr; }
+}
+.promo-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,87,184,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,87,184,0.18);
+}
+.promo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.promo-placeholder {
+  background: var(--blue-pale);
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--blue-light);
+}
+.promo-coming-soon {
+  text-align: center;
+  color: var(--blue-opticalia);
+}
+.promo-coming-soon span {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.promo-coming-soon p {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 /* SEÇÃO 1: NÚMEROS */
 .section-numbers {
   background: var(--white);
@@ -667,6 +720,7 @@ footer {
   <div class="nav-logo">Opticalia</div>
   <div class="nav-links">
     <a href="#servicos">Serviços</a>
+    <a href="#promocoes">Promoções</a>
     <a href="#sobre">Sobre</a>
     <a href="#contacto">Contacto</a>
   </div>
@@ -686,6 +740,31 @@ footer {
     </div>
     <div class="hero-image scroll-reveal">
       <img src="hero.jpg" alt="Interior da Opticalia Famoes com as coleccoes de armacoes">
+    </div>
+  </div>
+</section>
+
+<!-- PROMOÇÕES -->
+<section id="promocoes" class="section section-promos">
+  <div class="section-content">
+    <h2 class="section-title">Campanhas e Promoções</h2>
+    <p class="section-subtitle">Aproveite as nossas ofertas exclusivas</p>
+    <div class="promos-grid scroll-reveal">
+      <div class="promo-card">
+        <img src="promo1.png" alt="Óculos Graduados 2 por 1 - Opticalia Famões">
+      </div>
+      <div class="promo-card promo-placeholder">
+        <div class="promo-coming-soon">
+          <span>🎁</span>
+          <p>Em breve</p>
+        </div>
+      </div>
+      <div class="promo-card promo-placeholder">
+        <div class="promo-coming-soon">
+          <span>🎁</span>
+          <p>Em breve</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -818,6 +897,7 @@ footer {
       <p>Investimos em tecnologia, formação contínua e em ouvir os nossos clientes. Porque a sua visão merece o melhor.</p>
       <div class="about-logo">👓</div>
       <p style="font-weight: 600; color: var(--blue-dark);">A sua visão, a nossa prioridade.</p>
+      <a href="#contacto" class="btn" style="margin-top: 2rem;">📍 Localização e Horários</a>
     </div>
   </div>
 </section>
