@@ -533,6 +533,35 @@ body { padding-top: 60px; }
   border: none;
 }
 
+/* HORÁRIO */
+.hours-box {
+  max-width: 420px;
+  margin: 2.5rem auto 0;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  text-align: left;
+}
+
+.hours-box h3 {
+  font-size: 15px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.hours-row:last-child { border-bottom: none; }
+.hours-row span:last-child { font-weight: 600; }
+
 /* FOOTER */
 footer {
   padding: 4rem 2rem 2rem;
@@ -813,6 +842,13 @@ footer {
         <iframe src="https://maps.google.com/maps?q=Opticalia+Famoes+Rua+Jose+Antonio+Carvalho+16+Famoes&t=&z=16&ie=UTF8&iwloc=&output=embed&hl=pt-PT&gl=PT" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <p style="margin-top: 1.5rem; font-size: 13px; opacity: 0.85;">📍 Rua José António Carvalho 16, Loja 3 · 1685-907 Famões, Odivelas</p>
+
+      <div class="hours-box">
+        <h3>🕒 Horário</h3>
+        <div class="hours-row"><span>Segunda a Sexta</span><span>9:30 – 19:00</span></div>
+        <div class="hours-row"><span>Sábado</span><span>9:30 – 13:00</span></div>
+        <div class="hours-row"><span>Domingo</span><span>Fechado</span></div>
+      </div>
     </div>
   </div>
 </section>
