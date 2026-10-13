@@ -255,6 +255,77 @@ body { padding-top: 60px; }
   font-weight: 600;
 }
 
+/* CARD CLICÁVEL */
+.promo-card-link a {
+  display: block;
+  height: 100%;
+}
+.promo-card-link a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* SEGUROS */
+.section-seguros {
+  background: var(--blue-pale);
+}
+.seguros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 900px) {
+  .seguros-grid { grid-template-columns: 1fr; }
+}
+.seguro-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,87,184,0.08);
+}
+.seguro-logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.seguro-logo img {
+  max-height: 50px;
+  max-width: 160px;
+  object-fit: contain;
+}
+.seguro-nome {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--blue-opticalia);
+}
+.seguro-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.seguro-info {
+  background: var(--blue-opticalia);
+  color: white;
+}
+.seguro-info h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.seguro-info p {
+  color: rgba(255,255,255,0.85);
+}
+.seguro-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
 /* SEÇÃO 1: NÚMEROS */
 .section-numbers {
   background: var(--white);
@@ -721,6 +792,7 @@ footer {
   <div class="nav-links">
     <a href="#servicos">Serviços</a>
     <a href="#promocoes">Promoções</a>
+    <a href="#seguros">Seguros</a>
     <a href="#sobre">Sobre</a>
     <a href="#contacto">Contacto</a>
   </div>
@@ -753,11 +825,10 @@ footer {
       <div class="promo-card">
         <img src="promo1.png" alt="Óculos Graduados 2 por 1 - Opticalia Famões">
       </div>
-      <div class="promo-card promo-placeholder">
-        <div class="promo-coming-soon">
-          <span>🎁</span>
-          <p>Em breve</p>
-        </div>
+      <div class="promo-card promo-card-link">
+        <a href="#seguros">
+          <img src="promo2.png" alt="Seguros de Saúde - AdvanceCare e Medicare - Opticalia Famões">
+        </a>
       </div>
       <div class="promo-card promo-placeholder">
         <div class="promo-coming-soon">
@@ -888,6 +959,36 @@ footer {
   </div>
 </section>
 
+<!-- SEGUROS -->
+<section id="seguros" class="section section-seguros">
+  <div class="section-content">
+    <h2 class="section-title">Seguros de Saúde</h2>
+    <p class="section-subtitle">Utilizamos os principais seguros de saúde para que cuide da sua visão sem preocupações</p>
+    <div class="seguros-grid scroll-reveal">
+      <div class="seguro-card">
+        <div class="seguro-logo">
+          <img src="https://www.advancecare.pt/wp-content/uploads/2021/03/logo-advancecare.svg" alt="AdvanceCare" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="seguro-nome" style="display:none">AdvanceCare</span>
+        </div>
+        <p>Consultas de optometria e exames visuais comparticipados.</p>
+      </div>
+      <div class="seguro-card">
+        <div class="seguro-logo">
+          <img src="https://www.medicare.pt/assets/images/logo-medicare.png" alt="Medicare" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="seguro-nome" style="display:none">Medicare</span>
+        </div>
+        <p>Cobertura de exames e produtos óticos com o seu seguro Medicare.</p>
+      </div>
+      <div class="seguro-card seguro-info">
+        <div class="seguro-icon">🛡️</div>
+        <h3>Como funciona?</h3>
+        <p>Traga o seu cartão de seguro e trate de tudo em loja. Sem burocracia, sem esperas.</p>
+        <a href="#contacto" class="btn" style="margin-top:1.2rem; font-size:0.9rem; padding: 0.7rem 1.4rem;">Saber mais</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="sobre" class="section section-about">
   <div class="section-content">
@@ -912,6 +1013,7 @@ footer {
       <div class="contact-info">
         <a href="tel:+351219330287">☎️ 21 933 0287</a>
         <a href="https://wa.me/351964315380">💬 964 315 380</a>
+        <a href="mailto:opticaliafamoes@gmail.com">✉️ opticaliafamoes@gmail.com</a>
         <a href="https://www.instagram.com/opticaliafamoes/">📸 Instagram</a>
         <a href="https://www.facebook.com/opticaliafamoes">👍 Facebook</a>
       </div>
