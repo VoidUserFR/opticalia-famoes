@@ -817,16 +817,56 @@ body { padding-top: 60px; }
 
 /* MAP */
 .map-container {
-  margin: 3rem auto 0;
+  margin: 4.5rem auto 0;
   max-width: 900px;
   padding: 10px;
   border-radius: 20px;
   background: linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06));
-  border: 1px solid rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.55);
   box-shadow:
-    0 0 0 4px rgba(255,255,255,0.06),
-    0 0 60px rgba(150, 205, 255, 0.55),
+    0 0 0 4px rgba(255,255,255,0.08),
+    0 0 28px rgba(185, 225, 255, 0.75),
+    0 0 90px rgba(120, 190, 255, 0.55),
     0 24px 60px rgba(0, 20, 60, 0.4);
+}
+
+/* Halo de luz + grão que espalha o brilho */
+.map-container { position: relative; z-index: 0; }
+
+.map-container::before,
+.map-container::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.map-container::before {
+  inset: -12px -20px;
+  border-radius: 40px;
+  background: rgba(165, 215, 255, 0.55);
+  filter: blur(36px);
+}
+
+.map-container::after {
+  inset: -52px -90px;
+  border-radius: 90px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3 0 0 0 -1.42'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  opacity: 0.6;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 85px, #000 calc(100% - 85px), transparent),
+    linear-gradient(to bottom, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 85px, #000 calc(100% - 85px), transparent),
+    linear-gradient(to bottom, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+  mask-composite: intersect;
+}
+
+@media (max-width: 768px) {
+  .map-container::before { inset: -8px -10px; filter: blur(24px); }
+  .map-container::after { inset: -36px -40px; }
 }
 
 .map-container iframe {
@@ -1218,7 +1258,7 @@ footer {
       <div class="map-container">
         <iframe src="https://maps.google.com/maps?q=Opticalia+Famoes+Rua+Jose+Antonio+Carvalho+16+Famoes&t=&z=16&ie=UTF8&iwloc=&output=embed&hl=pt-PT&gl=PT" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <p style="margin-top: 1.5rem; font-size: 13px; opacity: 0.85;">📍 Rua José António Carvalho 16, Loja 3 · 1685-907 Famões, Odivelas</p>
+      <p style="margin-top: 4rem; font-size: 13px; opacity: 0.85;">📍 Rua José António Carvalho 16, Loja 3 · 1685-907 Famões, Odivelas</p>
 
       <div class="hours-box">
         <h3>🕒 Horário</h3>
