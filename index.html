@@ -635,22 +635,41 @@ body { padding-top: 60px; }
 .brands-track {
   display: flex;
   align-items: center;
-  gap: 3.5rem;
+  gap: 4rem;
   width: max-content;
-  animation: brands-scroll 32s linear infinite;
+  animation: brands-scroll 36s linear infinite;
 }
 
-.brands-track span {
-  font-size: 1.4rem;
+.brand-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+}
+
+.brand-logo {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.45);
+  transition: filter 0.35s ease;
+}
+
+.brand-item:hover .brand-logo {
+  filter: grayscale(0) opacity(1);
+}
+
+.brand-word {
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--blue-dark);
-  opacity: 0.55;
+  opacity: 0.5;
   white-space: nowrap;
   transition: opacity 0.3s ease;
   letter-spacing: 0.3px;
 }
 
-.brands-track span:hover {
+.brand-item:hover .brand-word {
   opacity: 1;
 }
 
@@ -1110,26 +1129,26 @@ footer {
   <p class="brands-label">TRABALHAMOS COM AS MELHORES MARCAS</p>
   <div class="brands-track-wrapper">
     <div class="brands-track">
-      <span>Maui Jim</span>
-      <span>Ray-Ban</span>
-      <span>Oakley</span>
-      <span>Longchamp</span>
-      <span>Pull&amp;Bear</span>
-      <span>Mango</span>
-      <span>Pedro del Hierro</span>
-      <span>Morel</span>
-      <span>Dolce &amp; Gabbana</span>
-      <span>Scalpers</span>
-      <span>Maui Jim</span>
-      <span>Ray-Ban</span>
-      <span>Oakley</span>
-      <span>Longchamp</span>
-      <span>Pull&amp;Bear</span>
-      <span>Mango</span>
-      <span>Pedro del Hierro</span>
-      <span>Morel</span>
-      <span>Dolce &amp; Gabbana</span>
-      <span>Scalpers</span>
+      <div class="brand-item"><span class="brand-word">Maui Jim</span></div>
+      <div class="brand-item"><img src="logo-rayban.svg" alt="Ray-Ban" class="brand-logo"></div>
+      <div class="brand-item"><img src="logo-oakley.svg" alt="Oakley" class="brand-logo"></div>
+      <div class="brand-item"><img src="logo-longchamp.svg" alt="Longchamp" class="brand-logo"></div>
+      <div class="brand-item"><span class="brand-word">Pull&amp;Bear</span></div>
+      <div class="brand-item"><img src="logo-mango.svg" alt="Mango" class="brand-logo"></div>
+      <div class="brand-item"><span class="brand-word">Pedro del Hierro</span></div>
+      <div class="brand-item"><span class="brand-word">Morel</span></div>
+      <div class="brand-item"><span class="brand-word">Dolce &amp; Gabbana</span></div>
+      <div class="brand-item"><span class="brand-word">Scalpers</span></div>
+      <div class="brand-item"><span class="brand-word">Maui Jim</span></div>
+      <div class="brand-item"><img src="logo-rayban.svg" alt="Ray-Ban" class="brand-logo"></div>
+      <div class="brand-item"><img src="logo-oakley.svg" alt="Oakley" class="brand-logo"></div>
+      <div class="brand-item"><img src="logo-longchamp.svg" alt="Longchamp" class="brand-logo"></div>
+      <div class="brand-item"><span class="brand-word">Pull&amp;Bear</span></div>
+      <div class="brand-item"><img src="logo-mango.svg" alt="Mango" class="brand-logo"></div>
+      <div class="brand-item"><span class="brand-word">Pedro del Hierro</span></div>
+      <div class="brand-item"><span class="brand-word">Morel</span></div>
+      <div class="brand-item"><span class="brand-word">Dolce &amp; Gabbana</span></div>
+      <div class="brand-item"><span class="brand-word">Scalpers</span></div>
     </div>
   </div>
 </section>
