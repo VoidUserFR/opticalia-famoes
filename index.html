@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Opticalia Famões - Óptica Premium. Exames de visão, lentes e consultoria especializada. Mais de 20 anos em Famões.">
     <title>Opticalia Famões - Óptica Premium</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <meta property="og:type" content="business.business">
+    <meta property="og:title" content="Opticalia Famões - Óptica Premium">
+    <meta property="og:description" content="Mais de 20 anos a cuidar da sua visão. Exames visuais, lentes de contacto e óculos graduados em Famões, Odivelas.">
+    <meta property="og:image" content="https://voiduserfr.github.io/opticalia-famoes/og-image.jpg">
+    <meta property="og:url" content="https://voiduserfr.github.io/opticalia-famoes/">
+    <meta property="og:locale" content="pt_PT">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Opticalia Famões - Óptica Premium">
+    <meta name="twitter:description" content="Mais de 20 anos a cuidar da sua visão em Famões, Odivelas.">
+    <meta name="twitter:image" content="https://voiduserfr.github.io/opticalia-famoes/og-image.jpg">
     <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -74,6 +91,60 @@ body {
 
 .nav-links a:hover { color: var(--blue-opticalia); }
 
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.active span:nth-child(2) { opacity: 0; }
+.nav-burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-links-mobile {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-medium);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  flex-direction: column;
+  padding: 0.5rem 0;
+  z-index: 999;
+}
+
+.nav-links-mobile.open { display: flex; }
+
+.nav-links-mobile a {
+  padding: 1rem 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.nav-links-mobile a:last-child { border-bottom: none; }
+.nav-links-mobile a:active { background: var(--blue-pale); }
+
 .nav-cta {
   background: var(--blue-opticalia);
   color: white;
@@ -101,6 +172,35 @@ body { padding-top: 60px; }
   position: relative;
   overflow: hidden;
 }
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::before {
+  width: 480px;
+  height: 480px;
+  top: -220px;
+  right: -140px;
+  background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 70%);
+  filter: blur(10px);
+}
+
+.hero::after {
+  width: 380px;
+  height: 380px;
+  bottom: -200px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(0,87,184,0.35) 0%, rgba(0,87,184,0) 70%);
+  filter: blur(10px);
+}
+
+.hero-content { position: relative; z-index: 1; }
 
 .hero-content {
   max-width: 1200px;
@@ -574,11 +674,28 @@ body { padding-top: 60px; }
 .section-about {
   background: var(--white);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-about::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  bottom: -220px;
+  right: -140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,87,184,0.08) 0%, rgba(0,87,184,0) 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .about-content {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .about-content h2 {
@@ -692,6 +809,22 @@ body { padding-top: 60px; }
 .section-award {
   background: linear-gradient(135deg, var(--blue-very-pale) 0%, var(--white) 100%);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-award::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(185,225,255,0.55) 0%, rgba(185,225,255,0) 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .award-content {
@@ -700,6 +833,8 @@ body { padding-top: 60px; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .award-badge {
@@ -729,7 +864,25 @@ body { padding-top: 60px; }
   background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-opticalia) 100%);
   color: white;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
+
+.section-contact::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -280px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-contact .section-content { position: relative; z-index: 1; }
 
 .contact-content h2 {
   font-size: 2.5rem;
@@ -983,8 +1136,17 @@ footer {
   .whatsapp-btn { width: 50px; height: 50px; font-size: 24px; }
   .nav { padding: 0.75rem 1rem; }
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
   .nav-logo-img { height: 32px; }
   .nav-cta { padding: 10px 18px; font-size: 12px; }
+}
+
+/* ACESSIBILIDADE: foco visível no teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--blue-light);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
     </style>
 </head>
@@ -999,7 +1161,17 @@ footer {
     <a href="#contacto">Contacto</a>
   </div>
   <a href="https://wa.me/351964315380" class="nav-cta">Marcar consulta</a>
+  <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="nav-links-mobile" id="navLinksMobile">
+  <a href="#servicos">Serviços</a>
+  <a href="#promocoes">Promoções</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#contacto">Contacto</a>
+</div>
 
 <!-- HERO COM IMAGEM -->
 <section class="hero">
@@ -1319,7 +1491,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    navBurger.classList.remove('active');
+    navLinksMobile.classList.remove('open');
+    navBurger.setAttribute('aria-expanded', 'false');
   });
+});
+
+const navBurger = document.getElementById('navBurger');
+const navLinksMobile = document.getElementById('navLinksMobile');
+navBurger.addEventListener('click', () => {
+  const isOpen = navLinksMobile.classList.toggle('open');
+  navBurger.classList.toggle('active', isOpen);
+  navBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  navBurger.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
 });
 </script>
 
