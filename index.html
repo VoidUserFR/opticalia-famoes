@@ -438,35 +438,6 @@ body { padding-top: 60px; }
   display: block;
 }
 
-/* SEÇÃO 1: NÚMEROS */
-.section-numbers {
-  background: var(--white);
-}
-
-.numbers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem;
-  margin: 3rem 0;
-}
-
-.number-item {
-  text-align: center;
-}
-
-.number-big {
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--blue-opticalia);
-  margin-bottom: 0.5rem;
-}
-
-.number-text {
-  font-size: 14px;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
 /* SEÇÃO 3: SERVIÇOS COM IMAGENS */
 .section-services {
   background: var(--white);
@@ -486,6 +457,7 @@ body { padding-top: 60px; }
   pointer-events: none;
   z-index: 0;
   animation: glow-drift-tr 14s ease-in-out infinite;
+  will-change: transform;
 }
 
 .section-services .section-content { position: relative; z-index: 1; }
@@ -576,6 +548,7 @@ body { padding-top: 60px; }
   pointer-events: none;
   z-index: 0;
   animation: glow-drift-bl 10s ease-in-out infinite;
+  will-change: transform;
 }
 
 .section-cta .section-content { position: relative; z-index: 1; }
@@ -667,6 +640,7 @@ body { padding-top: 60px; }
   pointer-events: none;
   z-index: 0;
   animation: glow-drift-tr 12s ease-in-out infinite;
+  will-change: transform;
 }
 
 .section-team .section-content { position: relative; z-index: 1; }
@@ -752,6 +726,7 @@ body { padding-top: 60px; }
   pointer-events: none;
   z-index: 0;
   animation: glow-drift-bl 13s ease-in-out infinite;
+  will-change: transform;
 }
 
 .about-content {
@@ -789,7 +764,7 @@ body { padding-top: 60px; }
 /* MARCAS - CARROSSEL EM LOOP */
 .section-brands {
   background: var(--gray-light);
-  padding: 3rem 0;
+  padding: 3rem 0 2rem;
   overflow: hidden;
 }
 
@@ -802,12 +777,32 @@ body { padding-top: 60px; }
   padding: 0 2rem;
 }
 
+.brands-name-display {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--blue-opticalia);
+  letter-spacing: 2px;
+  height: 4rem;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.brands-name-display.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .brands-track-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  padding: 20px 0;
 }
 
 .brands-track {
@@ -815,7 +810,7 @@ body { padding-top: 60px; }
   align-items: center;
   gap: 4rem;
   width: max-content;
-  animation: brands-scroll 22s linear infinite;
+  will-change: transform;
 }
 
 .brand-item {
@@ -823,6 +818,16 @@ body { padding-top: 60px; }
   align-items: center;
   justify-content: center;
   height: 34px;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.brands-track:hover .brand-item:not(:hover) {
+  opacity: 0.3;
+}
+
+.brands-track:hover .brand-item:hover {
+  z-index: 10;
 }
 
 .brand-logo {
@@ -839,6 +844,45 @@ body { padding-top: 60px; }
   filter: grayscale(0) opacity(1);
 }
 
+
+/* Tooltip com nome da marca após 1s */
+.brand-item {
+  position: relative;
+}
+
+
+/* Scale após 0.3s */
+.brand-item .brand-logo {
+  transition: filter 0.35s ease, transform 0.4s ease;
+  transition-delay: 0s;
+}
+
+.brand-item:hover .brand-logo {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.6);
+  transition-delay: 0s, 0.3s;
+}
+
+.brand-item::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 87, 184, 0.18) 0%, rgba(0, 87, 184, 0.06) 40%, rgba(0, 87, 184, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transition-delay: 0s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.brand-item:hover::before {
+  opacity: 1;
+  transition-delay: 0.3s;
+}
+
+.brand-item .brand-logo { position: relative; z-index: 1; }
+
 .brand-word {
   font-size: 1.3rem;
   font-weight: 600;
@@ -853,13 +897,8 @@ body { padding-top: 60px; }
   opacity: 1;
 }
 
-@keyframes brands-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .brands-track { animation-duration: 85s; }
+  .brands-track { animation: none; }
 }
 
 /* DESTAQUE: PRÉMIO 11 ANOS / 5 ESTRELAS */
@@ -882,6 +921,7 @@ body { padding-top: 60px; }
   pointer-events: none;
   z-index: 0;
   animation: glow-drift-center 9s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes glow-drift-center {
@@ -942,6 +982,7 @@ body { padding-top: 60px; }
   pointer-events: none;
   z-index: 0;
   animation: glow-drift-x 11s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes glow-drift-x {
@@ -985,13 +1026,20 @@ body { padding-top: 60px; }
   border: 1px solid rgba(255,255,255,0.15);
 }
 
-.contact-link:hover { background: rgba(255,255,255,0.2); }
+.contact-link:hover {
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 16px rgba(255,255,255,0.2), 0 0 32px rgba(255,255,255,0.08);
+}
 
 .contact-whatsapp {
   background: rgba(37, 211, 102, 0.2);
   border-color: rgba(37, 211, 102, 0.3);
+  box-shadow: 0 0 12px rgba(37, 211, 102, 0.25);
 }
-.contact-whatsapp:hover { background: rgba(37, 211, 102, 0.35); }
+.contact-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.35);
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.5), 0 0 40px rgba(37, 211, 102, 0.2);
+}
 
 .social-links {
   display: flex;
@@ -1020,13 +1068,21 @@ body { padding-top: 60px; }
 
 .social-instagram {
   background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  box-shadow: 0 0 14px rgba(220, 39, 67, 0.4);
 }
-.social-instagram:hover { filter: brightness(1.15); }
+.social-instagram:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 24px rgba(220, 39, 67, 0.65), 0 0 48px rgba(220, 39, 67, 0.25);
+}
 
 .social-facebook {
   background: #1877F2;
+  box-shadow: 0 0 14px rgba(24, 119, 242, 0.45);
 }
-.social-facebook:hover { background: #1565D8; }
+.social-facebook:hover {
+  background: #1565D8;
+  box-shadow: 0 0 24px rgba(24, 119, 242, 0.7), 0 0 48px rgba(24, 119, 242, 0.25);
+}
 
 .contact-cta .btn {
   background: white;
@@ -1106,6 +1162,23 @@ body { padding-top: 60px; }
 
 .hours-row:last-child { border-bottom: none; }
 .hours-row span:last-child { font-weight: 600; }
+
+/* FOOTER SOCIAL ICONS */
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+.footer-social-icon:hover { transform: scale(1.15); }
+.footer-social-icon--facebook { background: #1877F2; }
+.footer-social-icon--instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.footer-social-icon--whatsapp { background: #25D366; }
 
 /* FOOTER */
 footer {
@@ -1191,6 +1264,7 @@ footer {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .scroll-reveal.visible {
@@ -1207,6 +1281,12 @@ footer {
   .nav-logo-img { height: 32px; }
   .nav-cta { padding: 10px 18px; font-size: 12px; }
 }
+
+/* UTILITÁRIOS */
+.about-cta { margin-top: 2rem; }
+.about-highlight { font-weight: 600; color: var(--blue-dark); }
+.footer-social-col-text { font-size: 13px; margin-bottom: 1.5rem; }
+.contact-address { margin-top: 4rem; font-size: 13px; opacity: 0.85; }
 
 /* ACESSIBILIDADE: foco visível no teclado */
 a:focus-visible,
@@ -1396,8 +1476,8 @@ button:focus-visible {
       <p>Há sonhos que nascem muito antes de existir um plano. O meu começou aos 7 anos, na óptica do Sr. Machado, em Odemira. Fascinava-me ver o corte das lentes, a escolha das armações e, sobretudo, a alegria de quem voltava a ver com nitidez. Foi aí que nasceu a paixão pela óptica.</p>
       <p>Aos 19 anos terminei o curso de Técnico de Óptica e iniciei o meu percurso profissional. Mais tarde, movido pela vontade de aprender e fazer melhor, comecei a licenciatura em Optometria.</p>
       <p>Em 1 de setembro de 2004, esse sonho tornou-se realidade com a abertura da Opticalia Famões. Desde então, há mais de 20 anos que acompanhamos famílias da região com proximidade, rigor, honestidade e soluções visuais adaptadas a cada pessoa.</p>
-      <p style="font-weight: 600; color: var(--blue-dark);">Esta óptica nasceu de uma paixão, cresceu com formação e experiência e continua a ter a mesma missão: ajudar cada cliente a ver o mundo com mais clareza.</p>
-      <a href="#contacto" class="btn" style="margin-top: 2rem;">📍 Localização e Horários</a>
+      <p class="about-highlight">Esta óptica nasceu de uma paixão, cresceu com formação e experiência e continua a ter a mesma missão: ajudar cada cliente a ver o mundo com mais clareza.</p>
+      <a href="#contacto" class="btn about-cta">📍 Localização e Horários</a>
     </div>
   </div>
 </section>
@@ -1407,35 +1487,36 @@ button:focus-visible {
   <p class="brands-label">TRABALHAMOS COM AS MELHORES MARCAS</p>
   <div class="brands-track-wrapper">
     <div class="brands-track">
-      <div class="brand-item"><img src="logo-mauijim.svg" alt="Maui Jim" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-rayban.svg" alt="Ray-Ban" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-oakley.svg" alt="Oakley" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-longchamp.svg" alt="Longchamp" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-pullbear.svg" alt="Pull&amp;Bear" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-mango.svg" alt="Mango" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-pedrodelhierro.png" alt="Pedro del Hierro" class="brand-logo"></div>
-      <div class="brand-item brand-item-tall"><img src="logo-morel.png" alt="Morel" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-dolcegabbana.svg" alt="Dolce &amp; Gabbana" class="brand-logo"></div>
-      <div class="brand-item brand-item-tall"><img src="logo-scalpers.png" alt="Scalpers" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-mauijim.svg" alt="Maui Jim" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-rayban.svg" alt="Ray-Ban" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-oakley.svg" alt="Oakley" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-longchamp.svg" alt="Longchamp" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-pullbear.svg" alt="Pull&amp;Bear" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-mango.svg" alt="Mango" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-pedrodelhierro.png" alt="Pedro del Hierro" class="brand-logo"></div>
-      <div class="brand-item brand-item-tall"><img src="logo-morel.png" alt="Morel" class="brand-logo"></div>
-      <div class="brand-item"><img src="logo-dolcegabbana.svg" alt="Dolce &amp; Gabbana" class="brand-logo"></div>
-      <div class="brand-item brand-item-tall"><img src="logo-scalpers.png" alt="Scalpers" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Maui Jim"><img src="logo-mauijim.svg" alt="Maui Jim" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Ray-Ban"><img src="logo-rayban.svg" alt="Ray-Ban" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Oakley"><img src="logo-oakley.svg" alt="Oakley" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Longchamp"><img src="logo-longchamp.svg" alt="Longchamp" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Pull&Bear"><img src="logo-pullbear.svg" alt="Pull&amp;Bear" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Mango"><img src="logo-mango.svg" alt="Mango" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Pedro del Hierro"><img src="logo-pedrodelhierro.png" alt="Pedro del Hierro" class="brand-logo"></div>
+      <div class="brand-item brand-item-tall" data-brand="Morel"><img src="logo-morel.png" alt="Morel" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Dolce & Gabbana"><img src="logo-dolcegabbana.svg" alt="Dolce &amp; Gabbana" class="brand-logo"></div>
+      <div class="brand-item brand-item-tall" data-brand="Scalpers"><img src="logo-scalpers.png" alt="Scalpers" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Maui Jim"><img src="logo-mauijim.svg" alt="Maui Jim" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Ray-Ban"><img src="logo-rayban.svg" alt="Ray-Ban" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Oakley"><img src="logo-oakley.svg" alt="Oakley" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Longchamp"><img src="logo-longchamp.svg" alt="Longchamp" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Pull&Bear"><img src="logo-pullbear.svg" alt="Pull&amp;Bear" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Mango"><img src="logo-mango.svg" alt="Mango" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Pedro del Hierro"><img src="logo-pedrodelhierro.png" alt="Pedro del Hierro" class="brand-logo"></div>
+      <div class="brand-item brand-item-tall" data-brand="Morel"><img src="logo-morel.png" alt="Morel" class="brand-logo"></div>
+      <div class="brand-item" data-brand="Dolce & Gabbana"><img src="logo-dolcegabbana.svg" alt="Dolce &amp; Gabbana" class="brand-logo"></div>
+      <div class="brand-item brand-item-tall" data-brand="Scalpers"><img src="logo-scalpers.png" alt="Scalpers" class="brand-logo"></div>
     </div>
   </div>
+  <div class="brands-name-display" id="brandsNameDisplay"></div>
 </section>
 
 <!-- DESTAQUE: PRÉMIO 11 ANOS / 5 ESTRELAS -->
 <section class="section section-award">
   <div class="section-content">
     <div class="award-content scroll-reveal">
-      <img src="premio-5-estrelas.png" alt="Prémio Cinco Estrelas 2025 - 11 anos consecutivos - Serviços Óticos" class="award-badge">
+      <img src="premio-5-estrelas.png" alt="Prémio Cinco Estrelas 2025 - 11 anos consecutivos - Serviços Óticos" class="award-badge" loading="lazy" width="280" height="280">
       <h2>11 anos consecutivos premiados com 5 estrelas.</h2>
       <p>O reconhecimento dos nossos clientes é a nossa maior conquista. Mais de uma década a oferecer um serviço de excelência em saúde visual na Opticalia Famões.</p>
     </div>
@@ -1478,7 +1559,7 @@ button:focus-visible {
       <div class="map-container">
         <iframe src="https://maps.google.com/maps?q=Opticalia+Famoes+Rua+Jose+Antonio+Carvalho+16+Famoes&t=&z=16&ie=UTF8&iwloc=&output=embed&hl=pt-PT&gl=PT" title="Localização da Opticalia Famões no Google Maps" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin"></iframe>
       </div>
-      <p style="margin-top: 4rem; font-size: 13px; opacity: 0.85;">📍 Rua José António Carvalho 16, Loja 3 · 1685-907 Famões, Odivelas</p>
+      <p class="contact-address">📍 Rua José António Carvalho 16, Loja 3 · 1685-907 Famões, Odivelas</p>
 
       <div class="hours-box">
         <h3>🕒 Horário</h3>
@@ -1535,6 +1616,7 @@ button:focus-visible {
 </a>
 
 <script>
+// Scroll reveal
 const observerOptions = {
   threshold: 0.1,
   rootMargin: '0px 0px -50px 0px'
@@ -1551,6 +1633,54 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
+// Menu móvel
+const navBurger = document.getElementById('navBurger');
+const navLinksMobile = document.getElementById('navLinksMobile');
+
+navBurger.addEventListener('click', () => {
+  const isOpen = navLinksMobile.classList.toggle('open');
+  navBurger.classList.toggle('active', isOpen);
+  navBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  navBurger.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+});
+
+// Carrossel de marcas — seamless com requestAnimationFrame
+const brandsTrack = document.querySelector('.brands-track');
+if (brandsTrack) {
+  let pos = 0;
+  const speed = 0.4;
+
+  function scrollBrands() {
+    pos += speed;
+    const halfWidth = brandsTrack.scrollWidth / 2;
+    if (pos >= halfWidth) pos = 0;
+    brandsTrack.style.transform = `translateX(-${pos}px)`;
+    requestAnimationFrame(scrollBrands);
+  }
+
+  requestAnimationFrame(scrollBrands);
+}
+
+// Nome da marca em grande
+const brandsDisplay = document.getElementById('brandsNameDisplay');
+let brandTimeout;
+
+if (brandsDisplay) {
+  document.querySelectorAll('.brand-item[data-brand]').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      brandTimeout = setTimeout(() => {
+        brandsDisplay.textContent = item.dataset.brand;
+        brandsDisplay.classList.add('visible');
+      }, 300);
+    });
+    item.addEventListener('mouseleave', () => {
+      clearTimeout(brandTimeout);
+      brandsDisplay.classList.remove('visible');
+    });
+  });
+}
+
+// Scroll suave + fechar menu ao clicar em âncoras
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -1562,15 +1692,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     navLinksMobile.classList.remove('open');
     navBurger.setAttribute('aria-expanded', 'false');
   });
-});
-
-const navBurger = document.getElementById('navBurger');
-const navLinksMobile = document.getElementById('navLinksMobile');
-navBurger.addEventListener('click', () => {
-  const isOpen = navLinksMobile.classList.toggle('open');
-  navBurger.classList.toggle('active', isOpen);
-  navBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  navBurger.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
 });
 </script>
 
