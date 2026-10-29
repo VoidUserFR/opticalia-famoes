@@ -234,8 +234,8 @@ body { padding-top: 60px; }
   top: -300px;
   right: -200px;
   background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 68%);
-  filter: blur(6px);
   animation: glow-drift-tr 10s ease-in-out infinite;
+  will-change: transform;
 }
 
 .hero::after {
@@ -244,8 +244,8 @@ body { padding-top: 60px; }
   bottom: -280px;
   left: -180px;
   background: radial-gradient(circle, rgba(0,87,184,0.5) 0%, rgba(0,87,184,0) 68%);
-  filter: blur(6px);
   animation: glow-drift-bl 12s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes glow-drift-tr {
